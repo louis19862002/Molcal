@@ -2,14 +2,23 @@
 # The required inputs are the weight in either mg, ug, ng for the unit, and Molecular weight of chemical, and volume in litter (l)
 # For example, to calculate calcitriol 0.05mg and dissolve it in 100ul DMSO, then use the function: Molcal(0.05,"mg",416.6, 100*10^-6), then you will get the molar concentration 1.200192 mM
 Molcal <- function(weight,unit,MW,volume)
-{ if (unit == "mg")
+{ if (unit == "g")
 {
-  unit = 1*10^-3
+  unit = 1
   Conc. <- (weight*unit/MW)/volume
-  Conc. <- Conc.*10^3
-  label <- "mM"
+  Conc. <- Conc.*1
+  label <- "M"
   cat(Conc.,label)
 }
+  
+  else if (unit == "mg")
+  {
+    unit = 1*10^-3
+    Conc. <- (weight*unit/MW)/volume
+    Conc. <- Conc.*10^3
+    label <- "mM"
+    cat(Conc.,label)
+  }
   
   else if (unit == "ug")
   {
@@ -29,4 +38,3 @@ Molcal <- function(weight,unit,MW,volume)
     cat(Conc.,label)
   }
 }
-
